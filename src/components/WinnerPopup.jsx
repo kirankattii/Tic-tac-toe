@@ -10,8 +10,8 @@ const WinnerPopup = ({ winner, onNewGame }) => {
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
       <Confetti width={width} height={height} />
       <div className="bg-white p-8 rounded-xl shadow-2xl text-center transform">
-        <h2 className="text-4xl font-bold text-gray-800 mb-4">
-          🎉 Player {winner} Wins! 🎉
+        <h2 className="text-4xl font-bold text-gray-800 mb-4 flex items-center gap-3">
+          🎉 Player <span className='text-green-700 text-5xl'>{winner}</span> Wins! 🎉
         </h2>
         <button
           onClick={onNewGame}

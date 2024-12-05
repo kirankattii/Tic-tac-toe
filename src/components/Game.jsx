@@ -99,9 +99,9 @@ const Game = () => {
           onStartGame={initializeBoard}
         />
       ) : (
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-lg mx-auto">
           <div className="mb-6 text-center">
-            <h2 className="text-3xl font-bold text-gray-800">
+            <h2 className="text-xl font-bold text-gray-400">
               Current Player: <span className="text-blue-600">{currentPlayer}</span>
             </h2>
           </div>
