@@ -3,18 +3,17 @@
 
 import { useState } from 'react';
 import WinnerPopup from './WinnerPopup';
-import GameBoarSetup from './GameSetup';
 import GameSetup from './GameSetup';
 import GameBoard from './GameBoard';
 import DrawPopup from './DrawPopup';
 
 const Game = () => {
-  const [gridSize, setGridSize] = useState(3);
-  const [winStreak, setWinStreak] = useState(3);
+  const [gridSize, setGridSize] = useState(3); //initial value of the grid is 3
+  const [winStreak, setWinStreak] = useState(3); //initial value of winning strick is 3
   const [board, setBoard] = useState([]);
-  const [currentPlayer, setCurrentPlayer] = useState('X');
+  const [currentPlayer, setCurrentPlayer] = useState('X'); // current playing player
   const [gameStarted, setGameStarted] = useState(false);
-  const [winner, setWinner] = useState(null);
+  const [winner, setWinner] = useState(null); // winning player 
   const [winningCells, setWinningCells] = useState([]);
 
   const [isDraw, setIsDraw] = useState(false);
@@ -30,12 +29,14 @@ const Game = () => {
     setGameStarted(true);
   };
 
+  // Check for winning combinations in all directions
+
   const checkWinner = (board, row, col) => {
     const directions = [
-      [[0, 1], [0, -1]],
-      [[1, 0], [-1, 0]],
-      [[1, 1], [-1, -1]],
-      [[1, -1], [-1, 1]]
+      [[0, 1], [0, -1]], // horizontal
+      [[1, 0], [-1, 0]],  // vertical
+      [[1, 1], [-1, -1]], // diagonal
+      [[1, -1], [-1, 1]] // anti-diagonal
     ];
 
     for (const [dir1, dir2] of directions) {
@@ -58,6 +59,7 @@ const Game = () => {
         }
       }
 
+      // If winning streak is found, update game state
       if (count >= winStreak) {
         setWinner(currentPlayer);
         setWinningCells(winningPositions);
@@ -66,13 +68,13 @@ const Game = () => {
     }
   };
 
-  // In Game.jsx, add this function
+
   const checkDraw = (board) => {
     return board.every(row => row.every(cell => cell !== null));
   };
 
 
-
+  // handle click for X and O
   const handleCellClick = (row, col) => {
     if (board[row][col] || winner) return;
 
@@ -90,6 +92,7 @@ const Game = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      {/* This is the game settings component */}
       {!gameStarted ? (
         <GameSetup
           gridSize={gridSize}
@@ -105,6 +108,8 @@ const Game = () => {
               Current Player: <span className="text-blue-600">{currentPlayer}</span>
             </h2>
           </div>
+
+          {/* this is the box input field to mark X and O */}
           <GameBoard
             board={board}
             gridSize={gridSize}
@@ -120,6 +125,9 @@ const Game = () => {
           </button>
         </div>
       )}
+
+      {/* This is the popup. it will show when the player wins */}
+
       {winner && (
         <WinnerPopup
           winner={winner}
@@ -131,6 +139,8 @@ const Game = () => {
           }}
         />
       )}
+
+      {/* This is the popup when the match draws */}
       {isDraw && !winner && (
         <DrawPopup
           onNewGame={() => {

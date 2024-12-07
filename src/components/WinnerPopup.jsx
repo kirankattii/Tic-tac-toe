@@ -8,6 +8,7 @@ const WinnerPopup = ({ winner, onNewGame }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+      {/* Confetti animation setup */}
       <Confetti width={width} height={height} />
       <div className="bg-white p-8 rounded-xl shadow-2xl text-center transform">
         <h2 className="text-4xl font-bold text-gray-800 mb-4 flex items-center gap-3">

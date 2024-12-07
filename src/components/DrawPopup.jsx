@@ -1,5 +1,5 @@
-// Create src/components/DrawPopup.jsx
-import { useState, useCallback, useRef, useEffect } from 'react';
+
+import { useCallback, useRef, useEffect } from 'react';
 import ReactCanvasConfetti from 'react-canvas-confetti';
 
 const DrawPopup = ({ onNewGame }) => {
@@ -17,6 +17,8 @@ const DrawPopup = ({ onNewGame }) => {
         particleCount: Math.floor(200 * particleRatio)
       });
   }, []);
+
+
 
   const fire = useCallback(() => {
     makeShot(0.25, {
